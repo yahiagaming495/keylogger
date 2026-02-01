@@ -14,13 +14,13 @@ int main(int argc, char *argv[]) {
 
   char *eventfile = argv[1];
 
-  if (open(eventfile, O_RDONLY, 0) == -1) {
+  int fd = open(eventfile, O_RDONLY, 0);
+  
+  if (fd == -1) {
     perror("open");
     return -1;
   }
-
-  int fd = open(eventfile, O_RDONLY, 0);
-
+  
   struct input_event inputevent;
 
   while (1) {
